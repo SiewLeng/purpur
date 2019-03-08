@@ -14,10 +14,10 @@ module.exports = (app, db) => {
    */
 
    app.get('/', products.get);
-   app.get('/blouse', products.getAllBlouse);
-   app.get('/blouse/:img_id', products.getABlouse);
-   app.get('/byprice/blouse', products.blouseByPrice);
-   app.get('/bypopularity/blouse', products.blouseByPopularity);
+   app.get('/search/:type', products.getAllItem);
+   app.get('/searchSingle/:type/:img_id', products.getAItem);
+   app.get('/byprice/:type', products.itemByPrice);
+   app.get('/bypopularity/:type', products.itemByPopularity);
    app.get('/login', users.login);
    app.get('/signup', users.signup);
    app.get('/logout', users.logout);

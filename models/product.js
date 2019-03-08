@@ -44,9 +44,9 @@ module.exports = (dbPoolInstance) => {
     }
 
     return {
-        getAllBlouse: (email, callback) => {
-            let queryText = 'SELECT description, price, img_path,img_id FROM product WHERE type_of_product=$1';
-            let values = ['blouse'];
+        getAllItem: (type, email, callback) => {
+            let queryText = 'SELECT description, price, img_path,img_id, type_of_product FROM product WHERE type_of_product=$1';
+            let values = [type];
             dbPoolInstance.query(queryText, values, (error, result)=> {
                 let objArray = result.rows;
                 objArray = reduceByObj(objArray);
@@ -67,15 +67,16 @@ module.exports = (dbPoolInstance) => {
                     }
                 }
                 let obj = { "email": email,
+                            "type": type,
                             "item": sortObjArray
                             }
                 callback(error, obj);
             })
         },
 
-        getABlouse: (email, img_id, callback)=> {
+        getAItem: (type, email, img_id, callback)=> {
             let queryText = 'SELECT * FROM product WHERE type_of_product=$1 AND img_id=$2';
-            let values = ['blouse', img_id];
+            let values = [type, img_id];
             dbPoolInstance.query(queryText, values, (error, result)=> {
                 result.rows;
                 let item = new Object();
@@ -107,15 +108,16 @@ module.exports = (dbPoolInstance) => {
                 item.size = sortSize;
                 item.color = reduceByArray(color);
                 let obj = { "email" : email,
+                            "type": type,
                             "item": item
                            }
                 callback(error, obj);
             })
         },
 
-        blouseByPrice: (email, callback) => {
-            let queryText = 'SELECT description,img_path,img_id,price FROM product WHERE type_of_product=$1';
-            let values = ['blouse'];
+        itemByPrice: (type, email, callback) => {
+            let queryText = 'SELECT description,img_path,img_id,price, type_of_product FROM product WHERE type_of_product=$1';
+            let values = [type];
             dbPoolInstance.query(queryText, values, (error, result)=> {
                 let objItem = result.rows;
                 objItem = reduceByObj(objItem);
@@ -135,15 +137,16 @@ module.exports = (dbPoolInstance) => {
                     }
                 }
                 let obj = { "email" : email,
+                            "type": type,
                             "item": objItem
                            }
                 callback(error, obj);
             })
         },
 
-        blouseByPopularity: (email, callback) => {
-            let queryText = 'SELECT description,img_path,img_id,price,date_created FROM product WHERE type_of_product=$1';
-            let values = ['blouse'];
+        itemByPopularity: (type, email, callback) => {
+            let queryText = 'SELECT description,img_path,img_id,price,date_created, type_of_product FROM product WHERE type_of_product=$1';
+            let values = [type];
             dbPoolInstance.query(queryText, values, (error, queryResult)=> {
                 let objItem = queryResult.rows;
                 objItem = reduceByObj(objItem);
@@ -182,6 +185,7 @@ module.exports = (dbPoolInstance) => {
                         }
                     }
                     let obj = { "email" : email,
+                                "type": type,
                                "item": objItem
                              }
                     callback(error, obj);

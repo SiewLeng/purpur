@@ -2,11 +2,13 @@ var React = require("react");
 
 class ListItem extends React.Component {
     render() {
-        let urlAction = `/blouse/${this.props.item.img_id}`;
+        let urlAction = `/searchSingle/${this.props.item.type_of_product}/${this.props.item.img_id}`;
         let price = `SGD ${this.props.item.price}`;
+        let popularity =`Sold per day: ${Math.floor(this.props.item.popularity)}`
         return (
             <div className="box">
             <a href={urlAction}><img src={this.props.item.img_path}/></a>
+            <h6>{popularity}</h6>
             <h6>{price}</h6>
             <div className="text">{this.props.item.description}</div>
             </div>
@@ -16,6 +18,9 @@ class ListItem extends React.Component {
 
 class Home extends React.Component {
     render() {
+        let type = this.props.type;
+        let url1 =`/byprice/${this.props.type}`;
+        let url2 =`/bypopularity/${this.props.type}`;
         let loginMessage;
         if (this.props.email===undefined || this.props.email=== 'j:null') {
             loginMessage = "Login"
@@ -48,9 +53,9 @@ class Home extends React.Component {
                 </div>
                 <div className="row" id="content">
                     <div className="col-2">
-                        <h6> Search blouse by</h6>
-                        <div><a className="nav" href="/byprice/blouse"> Price</a></div>
-                        <div><a className="nav" href="/bypopularity/blouse"> Popularity</a></div>
+                        <h5> Sort {type} by: </h5>
+                        <div><a className="nav" href={url1}> Price</a></div>
+                        <div><a className="nav" href={url2}> Popularity</a></div>
                     </div>
                     <div className="col-10">
                     {itemsElement}

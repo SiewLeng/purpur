@@ -10,7 +10,7 @@ class Home extends React.Component {
         loginMessage = this.props.email;
     }
     let imagePath = this.props.item.img_path;
-    let urlAction = `/addToCart/blouse/${this.props.item.img_id}`;
+    let urlAction = `/addToCart/${this.props.type}/${this.props.item.img_id}`;
     let itemsSize = this.props.item.size.map((item, index)=> {
         return <option key={index} value={item}> {item} </option>;
     })

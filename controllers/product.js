@@ -8,37 +8,41 @@ module.exports = (db) => {
         response.render("home", {"email": request.cookies['email']});
     }
 
-    const getAllBlouse = (request, response)=> {
-        db.product.getAllBlouse(request.cookies['email'], (error,obj)=> {
-            response.render("home_blouse", obj);
+    const getAllItem = (request, response)=> {
+        let type = request.params.type;
+        db.product.getAllItem(type, request.cookies['email'], (error,obj)=> {
+            response.render("home_item", obj);
         })
     }
 
-    const getABlouse = (request, response)=> {
+    const getAItem = (request, response)=> {
+        let type = request.params.type;
         let img_id = request.params.img_id;
         let email = request.cookies['email'];
-        db.product.getABlouse(email, img_id, (error,obj)=> {
-            response.render("home_single_blouse", obj);
+        db.product.getAItem(type, email, img_id, (error,obj)=> {
+            response.render("home_single_item", obj);
         })
     }
 
-    const blouseByPrice = (request, response)=> {
-        db.product.blouseByPrice(request.cookies['email'], (error,obj)=> {
-            response.render("home_blouse", obj);
+    const itemByPrice = (request, response)=> {
+        let type = request.params.type;
+        db.product.itemByPrice(type, request.cookies['email'], (error,obj)=> {
+            response.render("home_item", obj);
         })
     }
 
-    const blouseByPopularity = (request, response)=> {
-        db.product.blouseByPopularity(request.cookies['email'], (error, obj)=> {
-            response.render("blouse_popular", obj);
+    const itemByPopularity = (request, response)=> {
+        let type = request.params.type;
+        db.product.itemByPopularity(type, request.cookies['email'], (error, obj)=> {
+            response.render("item_popular", obj);
         })
     }
 
     return {
         get,
-        getAllBlouse,
-        getABlouse,
-        blouseByPrice,
-        blouseByPopularity
+        getAllItem,
+        getAItem,
+        itemByPrice,
+        itemByPopularity
     }
 }

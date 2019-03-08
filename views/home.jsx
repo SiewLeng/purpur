@@ -30,8 +30,8 @@ class Home extends React.Component {
                 </div>
                 <div className="row" id="content">
                     <div className="col-2">
-                        <h6> Search By </h6>
-                        <div><a className="nav" href="/blouse"> Blouses </a></div>
+                        <h5> Search By: </h5>
+                        <div><a className="nav" href="/search/blouse"> Blouses </a></div>
                         <div><a className="nav" href=""> T-shirts </a></div>
                         <div><a className="nav" href=""> Pants </a></div>
                         <div><a className="nav" href=""> Skirts </a></div>
