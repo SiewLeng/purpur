@@ -32,10 +32,10 @@ class Home extends React.Component {
                     <div className="col-2">
                         <h5> Search By: </h5>
                         <div><a className="nav" href="/search/blouse"> Blouses </a></div>
-                        <div><a className="nav" href=""> T-shirts </a></div>
-                        <div><a className="nav" href=""> Pants </a></div>
-                        <div><a className="nav" href=""> Skirts </a></div>
-                        <div><a className="nav" href=""> Dresses </a></div>
+                        <div><a className="nav" href="/search/t_shirt"> T-shirts </a></div>
+                        <div><a className="nav" href="/search/pant"> Pants </a></div>
+                        <div><a className="nav" href="/search/skirt"> Skirts </a></div>
+                        <div><a className="nav" href="/search/dress"> Dresses </a></div>
                     </div>
                     <div className="col-10">
                         <div className="row">
